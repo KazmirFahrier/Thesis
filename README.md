@@ -2,7 +2,7 @@
 
 This repository contains the official implementation of a hybrid deep learning architecture designed to classify task-based fMRI data using a combination of **3D Convolutional Neural Networks (3D CNNs)** and **Transformer encoders** with attention mechanisms.
 
-The model, developed as part of a master's thesis, demonstrates superior performance in decoding brain activity patterns associated with somatotopic motor tasks. This work has been submitted as a journal paper titled:  
+The model, developed as part of a bachelor's thesis, demonstrates superior performance in decoding brain activity patterns associated with somatotopic motor tasks. This work has been submitted as a journal paper titled:  
 **"Advanced Task-Based fMRI Classification Using a Hybrid 3D CNN and Transformer Model with Attention Mechanisms"**
 
 ---
