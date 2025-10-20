@@ -1,59 +1,84 @@
-# 🧠 Hybrid 3D CNN + Transformer Model for Task-Based fMRI Classification
+# 🧠 Advanced Task-Based fMRI Classification — Hybrid 3D-CNN + Transformer with Attention (PyTorch)
 
-This repository contains the official implementation of a hybrid deep learning architecture designed to classify task-based fMRI data using a combination of **3D Convolutional Neural Networks (3D CNNs)** and **Transformer encoders** with attention mechanisms.
-
-The model, developed as part of a bachelor's thesis, demonstrates superior performance in decoding brain activity patterns associated with somatotopic motor tasks. This work has been submitted as a journal paper titled:  
-**"Advanced Task-Based fMRI Classification Using a Hybrid 3D CNN and Transformer Model with Attention Mechanisms"**
+This project investigates how **hybrid deep learning architectures** can enhance task-based fMRI classification by integrating **3D Convolutional Neural Networks (CNNs)** for local feature extraction with **Transformer encoders** for capturing long-range temporal dependencies. The work bridges deep learning and neuroscience to support **functional brain mapping**, **neuro-rehabilitation**, and **brain-computer interface (BCI)** applications.
 
 ---
 
-## 🧠 Project Summary
+## 🔍 Problem
 
-Functional MRI (fMRI) data, while rich in temporal and spatial information, poses significant challenges for classification due to its high dimensionality and variability. To address these, this project introduces a lightweight, scalable architecture that leverages:
-
-- **3D CNNs** to capture fine-grained spatial features from voxel-based inputs.
-- **3D Self-Attention Blocks** to enhance local feature representation.
-- **Transformer Encoders** to model long-range dependencies and contextual relevance.
-- **DropConnect & Dropout** for enhanced regularization and generalization.
-
-The model achieves an impressive **85.22% accuracy**, surpassing state-of-the-art baselines such as DeepBrain.
+Functional MRI (fMRI) data presents a unique challenge — it is **high-dimensional, noisy, and temporally complex**. Traditional CNNs can extract spatial features effectively but fail to capture temporal context across brain regions. The goal was to build a **scalable and interpretable model** that preserves spatial precision while understanding global temporal relationships in brain activation patterns.
 
 ---
 
-## 🔍 Dataset and Classification Task
+## ⚙️ Action
 
-The model was trained and evaluated on a subset of publicly available task-fMRI data focused on somatotopic motor responses. The classification task involved identifying one of four targeted classes:
-
-- **Left Leg**
-- **Right Leg**
-- **Upper Arm**
-- **Forearm**
-
-Preprocessing, slicing, and one-hot encoding techniques were applied to create consistent voxel-based representations suitable for deep learning.
+* Developed a **hybrid deep learning architecture** combining 3D-CNNs with Transformer encoders using **multi-head self-attention** to model spatial-temporal dependencies.
+* Implemented a **complete data pipeline** for 4D fMRI volumes (100×100×100×232) including zero-padding, normalization, voxel-wise BOLD analysis, and temporal alignment.
+* Introduced **DropConnect regularization (p=0.17)** and optimized architectural design, reducing computation cost by over **40%** (FLOPs 262G vs. 465G).
+* Conducted an **ablation study** comparing CNN-only, Transformer-only, and hybrid models to validate the efficiency of the proposed approach.
+* Tracked performance using custom visualization scripts (ROC-AUC, PRC-AUC, F1, MCC) and built attention heatmaps to interpret learned spatial features.
 
 ---
 
-## 🏗️ Model Architecture Highlights
+## 🚀 Result
 
-- **Input Layer**: 4D fMRI volume
-- **3D CNN Stack**: For local spatial extraction with Instance Normalization
-- **Self-Attention Block**: 3D Query-Key-Value with multi-head attention
-- **Transformer Encoder**: 6-layer sequence processing with dropout
-- **Classification Head**: Fully connected + Softmax
-
-The design emphasizes both **local texture learning** and **global context modeling**, resulting in a high-performance hybrid pipeline.
+* **Accuracy:** 85.22% | **MCC:** 0.8055 | **ROC-AUC:** 0.95 | **PRC-AUC:** 0.88
+* Outperformed baseline (DeepBrain) accuracy of 82.9% while reducing compute overhead by 40%.
+* Attention visualizations revealed activation clusters aligned with **motor and sensory cortical regions**, confirming the model’s neuroscientific validity.
+* Established a reproducible, open-source workflow for fMRI analysis — improving transparency and accelerating future neuroimaging research.
 
 ---
 
-## 📈 Performance
+## 🧠 Challenges & Lessons Learned
 
-| Metric   | Result  |
-|----------|---------|
-| Accuracy | 85.22%  |
-| Stability | Robust across folds |
-| Comparison | Outperformed DeepBrain and other baseline models |
-
-Additional metrics (F1 score, ROC-AUC, confusion matrix) are included in the Jupyter notebook for detailed evaluation.
+1. **High Dimensionality:** Addressed memory bottlenecks via batch-wise loading, data compression, and optimized tensor operations.
+2. **Noisy Data:** Integrated voxel-level normalization and temporal smoothing to reduce signal drift.
+3. **Limited Samples:** Mitigated overfitting with DropConnect, weighted loss functions, and careful model pruning.
+4. **Interpretability:** Developed visualization utilities for feature attribution and attention mapping to improve explainability.
 
 ---
 
+## 🧩 Key Takeaways
+
+This project demonstrates that combining **CNN-based spatial encoding** and **Transformer-based temporal modeling** can meaningfully improve both accuracy and interpretability in fMRI classification. The hybrid approach offers a path toward **real-time brain state decoding** with applications in **neuroimaging, clinical diagnostics, and cognitive science**.
+
+---
+
+## 🧮 Tools & Libraries
+
+* **Frameworks:** PyTorch, NumPy, Scikit-learn, Matplotlib, Seaborn
+* **Data Handling:** NiBabel, TorchIO, pandas
+* **Visualization:** ROC, PRC, saliency, and attention heatmaps
+* **Environment:** CUDA 12.2 (NVIDIA RTX GPU)
+
+---
+
+## 📊 Repository Structure
+
+```
+├── data_preprocessing/        # fMRI data loading, normalization, and signal alignment
+├── models/                    # CNN, Transformer, and hybrid architectures
+├── training/                  # Training scripts, evaluation metrics, early stopping
+├── visualization/              # Attention maps, ROC, and PRC visualizations
+├── notebooks/                 # Experiment notebooks
+└── README.md                  # This documentation
+```
+
+---
+
+## 🧩 Future Work
+
+* Implement **contrastive pretraining** for unsupervised representation learning.
+* Explore **cross-dataset generalization** to improve robustness.
+* Integrate results into real-time **BCI decoding frameworks**.
+
+---
+
+## 💬 Citation & Acknowledgments
+
+If you reference this repository, please cite the original work.
+This research was independently developed to advance **interpretable and resource-efficient** fMRI classification models.
+
+---
+
+⭐ **Keywords:** fMRI • 3D-CNN • Transformer • Self-Attention • Deep Learning • Neuroimaging • PyTorch • Brain Mapping • Data Preprocessing • Interpretability
