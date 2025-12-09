@@ -53,6 +53,26 @@ This project demonstrates that combining **CNN-based spatial encoding** and **Tr
 
 ---
 
+## ▶️ How to run the current training pipeline
+
+To reproduce the latest Kaggle-friendly baseline, run the standalone script `kaggle_fmri_pipeline.py`. It handles deterministic label indexing, stratified splits, z-score normalization, checkpointing, and MCC-based validation.
+
+Example (adjust paths to your dataset structure):
+
+```bash
+python kaggle_fmri_pipeline.py \
+  --train-root /kaggle/input/train_dir \
+  --val-size 0.2 \
+  --epochs 15 \
+  --batch-size 2 \
+  --num-workers 4 \
+  --output-dir /kaggle/working/fmri_runs
+```
+
+The script expects subfolders per class inside `--train-root`, containing `.nii`/`.nii.gz` volumes. Use `--help` to see all available options, including resampling, cropping, and checkpoint paths.
+
+---
+
 ## 📊 Repository Structure
 
 ```
